@@ -570,11 +570,14 @@ a {
 
 /* Text sitting directly on the plain red background (no card behind it)
    gets a light pink so it stays readable; card text stays dark red. */
-.section-heading .eyebrow,
 .section-heading h2,
-.contact-page-section .eyebrow,
 .contact-page-section h2 {
   color: var(--panel-strong);
+}
+
+.section-heading .eyebrow,
+.contact-page-section .eyebrow {
+  color: var(--text);
 }
 
 @media (max-width: 960px) {
