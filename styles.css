@@ -4,14 +4,14 @@
   --bg-soft: #ffffff;
   --dark: #171512;
   --panel: rgba(253, 227, 227, 0.92);
-  --panel-strong: #ffffff;
+  --panel-strong: rgba(253, 227, 227, 1);
   --text: #6b0f14;
   --muted: rgba(107, 15, 20, 0.72);
   --accent: #b00b10;
   --accent-bright: #e2141a;
-  --accent-soft: rgba(214, 31, 44, 0.1);
-  --border: rgba(17, 17, 17, 0.1);
-  --shadow: 0 24px 60px rgba(17, 17, 17, 0.08);
+  --accent-soft: rgba(214, 31, 44, 0.12);
+  --border: rgba(17, 17, 17, 0.12);
+  --shadow: 0 24px 70px rgba(17, 17, 17, 0.12);
 }
  
 * {
@@ -74,10 +74,10 @@ a {
   margin-bottom: 0;
   border: none;
   border-radius: 0;
-  background: var(--dark);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  background: rgba(253, 227, 227, 0.9);
+  box-shadow: var(--shadow);
   grid-column: 1 / -1;
-  color: #f5f2f0;
+  color: var(--text);
 }
  
 .brand {
