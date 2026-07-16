@@ -230,21 +230,8 @@ a {
 
 .quick-info {
   max-width: 560px;
-  padding: 20px 24px;
-  border-radius: 20px;
-  background:
-    linear-gradient(180deg, rgba(255, 236, 236, 0.95), rgba(255, 241, 241, 0.9)),
-    linear-gradient(135deg, rgba(214, 31, 44, 0.06), transparent 60%);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: var(--shadow);
-  color: var(--text);
   margin: 24px auto 0;
-  font-size: 1rem;
   text-align: center;
-}
-
-.quick-info strong {
-  color: var(--text);
 }
 
 /* Stacked layout: header, then hero card, then main content, then footer,
