@@ -229,6 +229,7 @@ a {
 }
 
 .quick-info {
+  max-width: 560px;
   padding: 20px 24px;
   border-radius: 20px;
   background:
@@ -237,8 +238,9 @@ a {
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: var(--shadow);
   color: var(--text);
-  margin-top: 24px;
+  margin: 24px auto 0;
   font-size: 1rem;
+  text-align: center;
 }
 
 .quick-info strong {
