@@ -387,7 +387,7 @@ a {
 .lead-subtext {
   margin: 10px 0 0;
   font-weight: 700;
-  color: var(--text);
+  color: var(--accent);
 }
 
 .hero-actions {
