@@ -118,28 +118,12 @@ a {
   color: var(--accent);
 }
 
-.nav a[aria-current="page"] {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 6px;
-}
-
-/* Homepage hero, centered like a landing page */
 .hero {
-  grid-column: 1 / -1;
-  padding: 56px 36px;
+  grid-column: 1 / 2;
+  padding: 36px;
   border-radius: 28px;
   background: var(--panel);
   box-shadow: var(--shadow);
-  text-align: center;
-}
-
-.hero-copy {
-  max-width: 760px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .hero-copy h1,
@@ -154,8 +138,8 @@ a {
 }
 
 .hero-copy h1 {
-  max-width: 16ch;
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  max-width: 11ch;
+  font-size: clamp(3rem, 8vw, 5.6rem);
 }
 
 .section-heading h2,
@@ -172,19 +156,10 @@ a {
   font-weight: 700;
 }
 
-.hero .lead {
-  padding: 0;
-  border-radius: 0;
-  background: none;
-  border: none;
-  max-width: 58ch;
-  color: var(--muted);
-  margin: 18px 0 0;
-  font-size: 1.15rem;
-}
-
+.lead,
 .section p,
 .contact p,
+.hero-points,
 .info-card p,
 .timeline-item p,
 .hero-card p {
@@ -197,26 +172,6 @@ a {
   color: var(--text);
   margin: 22px 0 0;
   font-size: 1.08rem;
-}
-
-/* Quick-info banner card, centered under the hero */
-.quick-info {
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: min(560px, 100%);
-  margin: 8px 0 8px;
-  padding: 22px 28px;
-  text-align: center;
-  border-radius: 20px;
-  background: var(--panel-strong);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  font-size: 1.05rem;
-  color: var(--text);
-}
-
-.quick-info strong {
-  color: var(--accent);
 }
 
 /* Reusable pink card, same look as the pink cards used elsewhere on the site */
@@ -234,12 +189,6 @@ a {
 .pink-card,
 .pink-card * {
   color: var(--text) !important;
-}
-
-/* The primary button on a pink card sits on a solid red fill, so its
-   label needs to stay light instead of inheriting the card's dark red text */
-.pink-card .button-primary {
-  color: #ffe3e3 !important;
 }
 
 /* Footer card matches the soft pink look and dark text */
@@ -279,6 +228,15 @@ a {
   grid-column: 1 / 2;
 }
 
+.quick-info {
+  width: fit-content;
+  margin: 32px auto;
+  padding: 20px 32px;
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
 /* Stacked layout: header, then hero card, then main content, then footer,
    all in a single column instead of the two-column grid. */
 .page-shell--stacked {
@@ -308,22 +266,20 @@ a {
 .photo-frame {
   aspect-ratio: 4 / 3;
   border-radius: 20px;
-  display: grid;
-  place-items: center;
-  background:
-    linear-gradient(180deg, rgba(255, 236, 236, 0.95), rgba(255, 241, 241, 0.9)),
-    linear-gradient(135deg, rgba(214, 31, 44, 0.12), transparent 60%);
-  border: 1px dashed rgba(17, 17, 17, 0.25);
-  color: var(--muted);
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .photo-card figcaption {
   margin-top: 10px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--panel);
   text-align: center;
 }
 
@@ -398,7 +354,13 @@ a {
   margin-top: 0;
 }
 
-/* Main textual elements on white/pink cards: dark red text, buttons unaffected */
+/* The mailto button sits on the red accent background, so it needs light
+   text — override the dark-red card-text rule above for this element. */
+.contact-page-card a.button-primary {
+  color: var(--panel-strong) !important;
+}
+
+/* Main textual elements on white cards: black text, buttons unaffected */
 .hero h1,
 .hero p,
 .hero .lead,
@@ -431,7 +393,6 @@ a {
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 28px;
-  justify-content: center;
 }
 
 .button {
@@ -439,7 +400,7 @@ a {
   align-items: center;
   justify-content: center;
   min-height: 48px;
-  padding: 0 20px;
+  padding: 0 18px;
   border-radius: 999px;
   border: 1px solid transparent;
   font-weight: 700;
@@ -459,7 +420,7 @@ a {
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  background: #8f0e16;
+  background: #b00b10;
 }
 
 .button-secondary {
@@ -546,42 +507,19 @@ a {
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 18px;
 }
 
 .info-card {
-  padding: 30px 26px;
-  text-align: center;
+  padding: 22px;
 }
 
 .info-card h3,
 .timeline-item h3 {
   margin: 0 0 10px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   color: var(--text);
-}
-
-.info-card p {
-  padding: 0;
-  border: none;
-  background: none;
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 1rem;
-}
-
-.card-link {
-  display: inline-block;
-  margin-top: 18px;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.card-link:hover,
-.card-link:focus-visible {
-  color: #8f0e16;
-  text-decoration: underline;
 }
 
 .split {
@@ -639,13 +577,14 @@ a {
 
 /* Text sitting directly on the plain red background (no card behind it)
    gets a light pink so it stays readable; card text stays dark red. */
-.section-heading .eyebrow,
 .section-heading h2,
-.section-heading .lead-subtext,
-.contact-page-section .eyebrow,
-.contact-page-section h2,
-.contact-page-section .lead-subtext {
+.contact-page-section h2 {
   color: var(--panel-strong);
+}
+
+.section-heading .eyebrow,
+.contact-page-section .eyebrow {
+  color: #3a0608;
 }
 
 @media (max-width: 960px) {
@@ -703,10 +642,6 @@ a {
   }
 
   .metric-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card-grid {
     grid-template-columns: 1fr;
   }
 }
