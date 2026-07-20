@@ -6,6 +6,21 @@
     <meta name="description" content="Red-Cap Industrial LLC provides expert industrial, commercial, and residential construction services throughout Georgia and South Carolina." />
     <title>Red-Cap Industrial LLC | Building Strength. Restoring Confidence.</title>
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      // Prevent the browser from auto-scrolling past the sticky header —
+      // whether from a #hash in the URL, a redirect that appends one, or
+      // the browser restoring a previous scroll position on reload.
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      if (window.location.hash) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      }
+      window.scrollTo(0, 0);
+      window.addEventListener("load", function () {
+        window.scrollTo(0, 0);
+      });
+    </script>
   </head>
   <body>
     <div class="page-shell page-shell--stacked">
