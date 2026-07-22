@@ -257,6 +257,7 @@ a {
    all in a single column instead of the two-column grid. */
 .page-shell--stacked {
   grid-template-columns: 1fr;
+  grid-template-rows: auto;
 }
  
 .page-shell--stacked .hero-card {
