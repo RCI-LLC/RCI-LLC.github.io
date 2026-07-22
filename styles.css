@@ -148,7 +148,7 @@ a {
  
 .hero-copy h1 {
   max-width: 11ch;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 4.5vw, 3rem);
 }
  
 .section-heading h2,
