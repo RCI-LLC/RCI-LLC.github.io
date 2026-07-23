@@ -680,12 +680,14 @@ a {
   }
  
   .hero-copy h1 {
-    max-width: 12ch;
-    font-size: clamp(2.4rem, 12vw, 4rem);
+    max-width: 100%;
+    font-size: clamp(1.4rem, 7vw, 2.4rem);
+    white-space: nowrap;
   }
  
   .metric-grid {
     grid-template-columns: 1fr;
   }
 }
+ 
  
