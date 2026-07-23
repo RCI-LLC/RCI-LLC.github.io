@@ -109,6 +109,7 @@ a {
   font-size: 1rem;
   letter-spacing: 0.02em;
   color: var(--text);
+  white-space: nowrap;
 }
  
 .nav {
