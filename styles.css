@@ -155,7 +155,7 @@ a {
  
 .section-heading h2,
 .contact h2 {
-  font-size: clamp(1.8rem, 3.8vw, 3rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.7rem);
 }
  
 .eyebrow {
