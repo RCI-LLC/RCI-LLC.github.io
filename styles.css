@@ -149,7 +149,7 @@ a {
  
 .hero-copy h1 {
   max-width: 100%;
-  font-size: clamp(2rem, 4.3vw, 3.2rem);
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
   white-space: nowrap;
 }
  
