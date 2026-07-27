@@ -21,7 +21,7 @@
           <a href="contact.html">Contact</a>
         </nav>
       </header>
-
+ 
       <main id="photos-page">
         <section class="section" id="photos">
           <div class="section-heading">
@@ -29,36 +29,66 @@
           </div>
           <div class="photo-grid">
             <figure class="photo-card">
-              <div class="photo-frame"><img src="working.jpg" alt="Crew setting posts on site with heavy equipment" loading="lazy" /></div>
+              <div class="photo-frame"><img src="working.jpg" alt="Crew setting posts on site with heavy equipment" loading="lazy" onclick="openLightbox(this)" /></div>
               <figcaption>Project coordination</figcaption>
             </figure>
             <figure class="photo-card">
-              <div class="photo-frame"><img src="beforeafter.jpg" alt="Before and after photos of a renovated interior space" loading="lazy" /></div>
+              <div class="photo-frame"><img src="beforeafter.jpg" alt="Before and after photos of a renovated interior space" loading="lazy" onclick="openLightbox(this)" /></div>
               <figcaption>Closeout &amp; handover</figcaption>
             </figure>
             <figure class="photo-card">
-              <div class="photo-frame"><img src="concrete.jpg" alt="Crew finishing a freshly poured concrete slab" loading="lazy" /></div>
+              <div class="photo-frame"><img src="concrete.jpg" alt="Crew finishing a freshly poured concrete slab" loading="lazy" onclick="openLightbox(this)" /></div>
               <figcaption>Crew at work</figcaption>
             </figure>
             <figure class="photo-card">
-              <div class="photo-frame"><img src="riverclub.jpg" alt="Aerial view of a commercial building addition under construction" loading="lazy" /></div>
+              <div class="photo-frame"><img src="riverclub.jpg" alt="Aerial view of a commercial building addition under construction" loading="lazy" onclick="openLightbox(this)" /></div>
               <figcaption>General contracting</figcaption>
             </figure>
             <figure class="photo-card">
-              <div class="photo-frame"><img src="repairs.jpg" alt="Excavator clearing and repairing a site roadway" loading="lazy" /></div>
+              <div class="photo-frame"><img src="repairs.jpg" alt="Excavator clearing and repairing a site roadway" loading="lazy" onclick="openLightbox(this)" /></div>
               <figcaption>Hurricane Clean-up</figcaption>
             </figure>
             <figure class="photo-card">
-              <div class="photo-frame"><img src="finished.jpg" alt="Completed metal building exterior" loading="lazy" /></div>
+              <div class="photo-frame"><img src="finished.jpg" alt="Completed metal building exterior" loading="lazy" onclick="openLightbox(this)" /></div>
               <figcaption>Finished space</figcaption>
             </figure>
           </div>
         </section>
       </main>
-
+ 
       <footer class="footer">
         <p>&copy; 2026 Red-Cap Industrial, LLC. All rights reserved.</p>
       </footer>
     </div>
+ 
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+      <button class="lightbox-close" type="button" aria-label="Close" onclick="closeLightbox(event)">&times;</button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+    </div>
+ 
+    <script>
+      function openLightbox(imgEl) {
+        var lightbox = document.getElementById("lightbox");
+        var lightboxImg = document.getElementById("lightbox-img");
+        lightboxImg.src = imgEl.src;
+        lightboxImg.alt = imgEl.alt;
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      }
+ 
+      function closeLightbox(e) {
+        // Only close if the click was on the overlay background, the close
+        // button, or the Escape key — not on the enlarged image itself.
+        if (e.type === "click" && e.target.id === "lightbox-img") return;
+        var lightbox = document.getElementById("lightbox");
+        lightbox.classList.remove("is-open");
+        document.body.style.overflow = "";
+      }
+ 
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeLightbox(e);
+      });
+    </script>
   </body>
 </html>
+ 
