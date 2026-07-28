@@ -353,6 +353,65 @@ a {
   background: rgba(255, 255, 255, 0.3);
 }
  
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+ 
+.lightbox-nav:hover,
+.lightbox-nav:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+}
+ 
+.lightbox-prev {
+  left: 18px;
+}
+ 
+.lightbox-next {
+  right: 18px;
+}
+ 
+.lightbox-counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+ 
+@media (max-width: 640px) {
+  .lightbox-nav {
+    width: 42px;
+    height: 42px;
+  }
+ 
+  .lightbox-prev {
+    left: 8px;
+  }
+ 
+  .lightbox-next {
+    right: 8px;
+  }
+}
+ 
 .contact-page-card {
   grid-column: 1 / -1;
   display: grid;
