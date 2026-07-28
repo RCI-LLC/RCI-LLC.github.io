@@ -564,9 +564,14 @@ a {
 }
  
 .button-secondary {
-  background: rgba(253, 227, 227, 1);
-  border-color: var(--border);
-  color: var(--text);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+ 
+.button-secondary:hover,
+.button-secondary:focus-visible {
+  background: #b00b10;
 }
  
 .hero-points {
