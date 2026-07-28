@@ -21,7 +21,6 @@
           <a href="contact.html">Contact</a>
         </nav>
       </header>
-
       <main class="contact-card contact-page-card" id="contact-page">
         <section class="contact-card" id="contact">
           <div class="pink-card">
@@ -30,9 +29,10 @@
               <p>Give us a call at 706-466-0696(Len), 706-437-9912(Office), 
               or send us a message below.</p>
             </h2>
-
-            <a class="button button-primary" href="mailto:leonard.rcillc@gmail.com">leonard.rcillc@gmail.com</a>
-
+            <div class="email-row">
+              <a class="button button-primary" href="mailto:leonard.rcillc@gmail.com">leonard.rcillc@gmail.com</a>
+              <button type="button" class="button button-secondary" id="copy-email-btn" onclick="copyEmail()">Copy email</button>
+            </div>
             <div class="contact-page-info">
               <p>Office hours:</p>
               <p><strong>Mon-Thu</strong> 7:00 AM-5:30 PM</p>
@@ -41,14 +41,54 @@
                 knowing that from the Lord you will receive the inheritance</br>
                 as your reward. You are serving the Lord Christ." Colossians 3:23-24 ESV</p>
             </div>
-
           </div>
         </section>
       </main>
-
       <footer class="footer">
         <p>&copy; 2026 Red-Cap Industrial, LLC. All rights reserved.</p>
       </footer>
     </div>
+ 
+    <script>
+      function copyEmail() {
+        var email = "leonard.rcillc@gmail.com";
+        var btn = document.getElementById("copy-email-btn");
+        var resetLabel = function () {
+          setTimeout(function () {
+            btn.textContent = "Copy email";
+          }, 1800);
+        };
+ 
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(function () {
+            btn.textContent = "Copied!";
+            resetLabel();
+          }).catch(function () {
+            fallbackCopy(email, btn, resetLabel);
+          });
+        } else {
+          fallbackCopy(email, btn, resetLabel);
+        }
+      }
+ 
+      function fallbackCopy(text, btn, resetLabel) {
+        var temp = document.createElement("textarea");
+        temp.value = text;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        try {
+          document.execCommand("copy");
+          btn.textContent = "Copied!";
+        } catch (err) {
+          btn.textContent = "Copy failed";
+        }
+        document.body.removeChild(temp);
+        resetLabel();
+      }
+    </script>
   </body>
 </html>
+ 
