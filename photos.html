@@ -28,28 +28,35 @@
             <h2>A look at our project work.</h2>
           </div>
           <div class="photo-grid">
-            <figure class="photo-card">
-              <div class="photo-frame"><img src="working.jpg" alt="Crew setting posts on site with heavy equipment" loading="lazy" onclick="openLightbox(this)" /></div>
+            <!--
+              Each figure below is one "gallery." data-gallery holds a
+              comma-separated list of image filenames — the first one is
+              shown as the cover photo. To add more photos to a gallery,
+              just add more filenames to that list, e.g.:
+              data-gallery="working.jpg,working2.jpg,working3.jpg"
+            -->
+            <figure class="photo-card" data-gallery="working.jpg">
+              <div class="photo-frame"><img src="working.jpg" alt="Crew setting posts on site with heavy equipment" loading="lazy" onclick="openLightbox(this.closest('figure'))" /></div>
               <figcaption>Project coordination</figcaption>
             </figure>
-            <figure class="photo-card">
-              <div class="photo-frame"><img src="beforeafter.jpg" alt="Before and after photos of a renovated interior space" loading="lazy" onclick="openLightbox(this)" /></div>
+            <figure class="photo-card" data-gallery="beforeafter.jpg">
+              <div class="photo-frame"><img src="beforeafter.jpg" alt="Before and after photos of a renovated interior space" loading="lazy" onclick="openLightbox(this.closest('figure'))" /></div>
               <figcaption>Closeout &amp; handover</figcaption>
             </figure>
-            <figure class="photo-card">
-              <div class="photo-frame"><img src="concrete.jpg" alt="Crew finishing a freshly poured concrete slab" loading="lazy" onclick="openLightbox(this)" /></div>
+            <figure class="photo-card" data-gallery="concrete.jpg">
+              <div class="photo-frame"><img src="concrete.jpg" alt="Crew finishing a freshly poured concrete slab" loading="lazy" onclick="openLightbox(this.closest('figure'))" /></div>
               <figcaption>Crew at work</figcaption>
             </figure>
-            <figure class="photo-card">
-              <div class="photo-frame"><img src="riverclub.jpg" alt="Aerial view of a commercial building addition under construction" loading="lazy" onclick="openLightbox(this)" /></div>
+            <figure class="photo-card" data-gallery="riverclub.jpg">
+              <div class="photo-frame"><img src="riverclub.jpg" alt="Aerial view of a commercial building addition under construction" loading="lazy" onclick="openLightbox(this.closest('figure'))" /></div>
               <figcaption>General contracting</figcaption>
             </figure>
-            <figure class="photo-card">
-              <div class="photo-frame"><img src="repairs.jpg" alt="Excavator clearing and repairing a site roadway" loading="lazy" onclick="openLightbox(this)" /></div>
+            <figure class="photo-card" data-gallery="repairs.jpg">
+              <div class="photo-frame"><img src="repairs.jpg" alt="Excavator clearing and repairing a site roadway" loading="lazy" onclick="openLightbox(this.closest('figure'))" /></div>
               <figcaption>Hurricane Clean-up</figcaption>
             </figure>
-            <figure class="photo-card">
-              <div class="photo-frame"><img src="finished.jpg" alt="Completed metal building exterior" loading="lazy" onclick="openLightbox(this)" /></div>
+            <figure class="photo-card" data-gallery="finished.jpg">
+              <div class="photo-frame"><img src="finished.jpg" alt="Completed metal building exterior" loading="lazy" onclick="openLightbox(this.closest('figure'))" /></div>
               <figcaption>Finished space</figcaption>
             </figure>
           </div>
@@ -61,32 +68,64 @@
       </footer>
     </div>
  
-    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-      <button class="lightbox-close" type="button" aria-label="Close" onclick="closeLightbox(event)">&times;</button>
+    <div class="lightbox" id="lightbox" onclick="handleOverlayClick(event)">
+      <button class="lightbox-close" type="button" aria-label="Close" onclick="closeLightbox()">&times;</button>
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous photo" onclick="showDelta(-1)">&#10094;</button>
       <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="Next photo" onclick="showDelta(1)">&#10095;</button>
+      <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
  
     <script>
-      function openLightbox(imgEl) {
-        var lightbox = document.getElementById("lightbox");
-        var lightboxImg = document.getElementById("lightbox-img");
-        lightboxImg.src = imgEl.src;
-        lightboxImg.alt = imgEl.alt;
-        lightbox.classList.add("is-open");
+      var currentGallery = [];
+      var currentIndex = 0;
+ 
+      function openLightbox(figureEl) {
+        currentGallery = figureEl.dataset.gallery.split(",").map(function (s) {
+          return s.trim();
+        });
+        currentIndex = 0;
+        renderLightbox();
+        document.getElementById("lightbox").classList.add("is-open");
         document.body.style.overflow = "hidden";
       }
  
-      function closeLightbox(e) {
-        // Only close if the click was on the overlay background, the close
-        // button, or the Escape key — not on the enlarged image itself.
-        if (e.type === "click" && e.target.id === "lightbox-img") return;
-        var lightbox = document.getElementById("lightbox");
-        lightbox.classList.remove("is-open");
+      function renderLightbox() {
+        var img = document.getElementById("lightbox-img");
+        img.src = currentGallery[currentIndex];
+        var counter = document.getElementById("lightbox-counter");
+        if (currentGallery.length > 1) {
+          counter.textContent = (currentIndex + 1) + " / " + currentGallery.length;
+          counter.style.display = "block";
+        } else {
+          counter.style.display = "none";
+        }
+        var showNav = currentGallery.length > 1;
+        document.querySelector(".lightbox-prev").style.display = showNav ? "flex" : "none";
+        document.querySelector(".lightbox-next").style.display = showNav ? "flex" : "none";
+      }
+ 
+      function showDelta(delta) {
+        currentIndex = (currentIndex + delta + currentGallery.length) % currentGallery.length;
+        renderLightbox();
+      }
+ 
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("is-open");
         document.body.style.overflow = "";
       }
  
+      function handleOverlayClick(e) {
+        // Only close when clicking the dark background itself, not the
+        // image or the nav/close buttons.
+        if (e.target.id === "lightbox") closeLightbox();
+      }
+ 
       document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") closeLightbox(e);
+        if (!document.getElementById("lightbox").classList.contains("is-open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") showDelta(-1);
+        if (e.key === "ArrowRight") showDelta(1);
       });
     </script>
   </body>
