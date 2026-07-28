@@ -483,6 +483,14 @@ a {
   margin-top: 0;
 }
  
+.email-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+ 
 /* The mailto button sits on the red accent background, so it needs light
    text — override the dark-red card-text rule above for this element. */
 .contact-page-card a.button-primary {
